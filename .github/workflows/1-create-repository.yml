@@ -1,0 +1,10 @@
+name: create repository
+on: 
+  issues: 
+    types: [opened]
+jobs:
+  create_repository:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Repository 
+        run: curl -u 'Victor' https://api.github.com/victorfjansen/repos -d '{"name":"My Repository"}'
