@@ -15,5 +15,3 @@ jobs:
         echo "Issuel Title: ${{ github.event.issue.title }}"
         echo "Issuel Body: ${{ github.event.issue.body }}"
         echo "Issue content: ${{ toJSON(github.event.issue) }}"
-      - name: Create repository
-       
