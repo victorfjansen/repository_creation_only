@@ -14,4 +14,3 @@ jobs:
         run: gh repo create some-repo --public
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          GH_TOKEN: ${{ github.token }}
