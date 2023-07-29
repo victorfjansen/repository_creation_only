@@ -15,5 +15,7 @@ jobs:
         run: echo "${{ toJSON(github) }}"
       - name: Output secrets
         run: echo "${{ toJSON(secrets) }}"
+      - name: Output vars
+        run: echo "${{ toJSON(vars) }}"
       - name: Create repository
         run: gh repo create some-repo --public
