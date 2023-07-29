@@ -8,7 +8,8 @@ on:
 jobs:
   create_repository:
     runs-on: ubuntu-latest
-    permissions: write-all
+    permissions: 
+      repository-projects: write
     steps:
       - name: Output metadata
         run: echo "${{ toJSON(github) }}"
