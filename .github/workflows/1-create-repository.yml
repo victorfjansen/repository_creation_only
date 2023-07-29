@@ -1,8 +1,5 @@
 env:
-  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  super_secret: ${{ secrets.token_auth }}
-  super_secret1: ${{ secrets.TOKEN_ACCESS}}
-  super_secret2: ${{ secrets.token_auth.TOKEN_ACCESS }}
+  super_secret: ${{ secrets.TOKEN_ACCESS}}
 
 name: create repository
 on: 
@@ -14,24 +11,9 @@ jobs:
     permissions: write-all
     environment: token_auth
     steps:
-      - name: Output metadata
-        run: echo "${{ toJSON(github) }}"
-      - name: Output super_secret
-        run: echo "${{ secrets.token_auth }}"
-      - name: Output super_secret1
-        run: echo "${{ secrets.TOKEN_ACCESS }}"
-      - name: Output super_secret2
-        run: echo "${{ secrets.token_auth.TOKEN_ACCESS }}"
-      - name: Output secrets
-        run: echo "${{ toJSON(secrets) }}"
-      - name: Output vars
-        run: echo "${{ toJSON(vars) }}"
-      - name: Output env.GH_TOKEN
-        run: echo "${{env.GH_TOKEN}}"
-      - name: Output secrets.GH_TOKEN
-        run: echo "${{secrets.GH_TOKEN}}"
-      - name: Output secrets.GITHUB_TOKEN
-        run: echo "${{secrets.GITHUB_TOKEN}}"
+      - run: |
+        echo "Issuel Title: ${{ github.event.issue.title }}"
+        echo "Issuel Body: ${{ github.event.issue.body }}"
+        echo "Issue content: ${{ toJSON(github.event.issue) }}"
       - name: Create repository
-        run: |
-          curl -H "Authorization: token ${{secrets.TOKEN_ACCESS}}" https://api.github.com/user/repos -d '{"name":"bdash"}'
+       
