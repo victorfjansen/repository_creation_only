@@ -1,3 +1,6 @@
+env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 name: create repository
 on: 
   issues: 
@@ -13,5 +16,3 @@ jobs:
         run: echo "${{ toJSON(secrets) }}"
       - name: Create repository
         run: gh repo create some-repo --public
-        env:
-          GITHUB_TOKEN: ${{secrets.github_token}}
