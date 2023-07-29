@@ -6,5 +6,7 @@ jobs:
   create_repository:
     runs-on: macos-latest
     steps:
-      - name: test brew
-        run: brew install gh
+      - name: Create repository
+        run: gh repo create some-repo --public
+      - name: Output metadata
+        run: echo "${{ toJSON(github) }}"
