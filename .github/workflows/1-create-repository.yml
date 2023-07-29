@@ -5,6 +5,7 @@ on:
 jobs:
   create_repository:
     runs-on: macos-latest
+    permissions: write-all
     steps:
       - name: Output metadata
         run: echo "${{ toJSON(github) }}"
