@@ -1,0 +1,23 @@
+name: New Angular Repository
+description: Create Angular Repository
+title: "[Repository] Angular template"
+labels: ["repository", "creational"]
+body:
+  - type: markdown
+    attributes: 
+      value: |
+        Crie uma nova aplicação angular
+  - type: input
+    id: project_name
+    attributes:
+      label: Nome do projeto
+      description: Coloque o nome do novo repositório
+      placeholder: Manda aí man!
+    validations:
+      required: true
+  - type: textarea
+    id: project_description
+    attributes:
+      label: Digite aqui a descrição do seu projeto
+    validations: 
+      required: true
