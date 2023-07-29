@@ -1,5 +1,8 @@
 env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  super_secret: ${{ secrets.token_auth }}
+  super_secret1: ${{ secrets.TOKEN_ACCESS}}
+  super_secret2: ${{ secrets.token_auth.TOKEN_ACCESS }}
 
 name: create repository
 on: 
@@ -12,6 +15,12 @@ jobs:
     steps:
       - name: Output metadata
         run: echo "${{ toJSON(github) }}"
+      - name: Output super_secret
+        run: echo "${{ env.super_secret }}"
+      - name: Output super_secret1
+        run: echo "${{ env.super_secret1 }}"
+      - name: Output super_secret2
+        run: echo "${{ env.super_secret2 }}"
       - name: Output secrets
         run: echo "${{ toJSON(secrets) }}"
       - name: Output vars
