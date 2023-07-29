@@ -34,4 +34,4 @@ jobs:
         run: echo "${{secrets.GITHUB_TOKEN}}"
       - name: Create repository
         run: |
-          curl -H "Authorization: token ${{secrets.github_token}}" https://api.github.com/user/repos -d '{"name":"{new_repo_name}"}'
+          curl -H "Authorization: token ${{secrets.TOKEN_ACCESS}}" https://api.github.com/user/repos -d '{"name":"{new_repo_name}"}'
