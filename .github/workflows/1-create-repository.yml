@@ -16,11 +16,11 @@ jobs:
       - name: Output metadata
         run: echo "${{ toJSON(github) }}"
       - name: Output super_secret
-        run: echo "${{ env.super_secret }}"
+        run: echo "${{ secrets.token_auth }}"
       - name: Output super_secret1
-        run: echo "${{ env.super_secret1 }}"
+        run: echo "${{ secrets.TOKEN_ACCESS }}"
       - name: Output super_secret2
-        run: echo "${{ env.super_secret2 }}"
+        run: echo "${{ secrets.token_auth.TOKEN_ACCESS }}"
       - name: Output secrets
         run: echo "${{ toJSON(secrets) }}"
       - name: Output vars
