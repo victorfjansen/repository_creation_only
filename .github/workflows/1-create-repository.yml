@@ -12,6 +12,7 @@ jobs:
   create_repository:
     runs-on: ubuntu-latest
     permissions: write-all
+    environment: token_auth
     steps:
       - name: Output metadata
         run: echo "${{ toJSON(github) }}"
