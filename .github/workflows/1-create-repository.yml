@@ -53,7 +53,8 @@ jobs:
     steps:
       - name: Delete Repository IF Errors
         run: |
-          gh repo delete "${{ needs.create_repository.outputs.repository_link }}" --yes
           gh issue close ${{ github.event.issue.html_url }} -c "Algo deu errado na criação. Verifique nas Actions!"
-
+          gh repo delete "${{ needs.create_repository.outputs.repository_link }}" --yes
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_ACCESS }}
           
