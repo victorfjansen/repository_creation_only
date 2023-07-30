@@ -2,3 +2,8 @@ name: New Angular Repository
 description: Create Angular Repository
 title: "[Repository] Angular template - Coloque aqui o nome do seu novo repositório!"
 labels: ["repository", "creational"]
+body:
+  - type: markdown
+    attributes: 
+      value: |
+        Crie uma nova aplicação angular
