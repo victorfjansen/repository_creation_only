@@ -16,6 +16,7 @@ jobs:
           gh repo create "${{ github.event.issue.title }}" --public 
           repository_link="https://github.com/victorfjansen/${{github.event.issue.title}}"
           echo "repository_link=$repository_link" >> $GITHUB_OUTPUT
+          gh issue comment ${{ github.event.issue.html_url }} -b "Acompanhe o processo de criação por aqui!"
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_ACCESS }}
 
@@ -42,4 +43,18 @@ jobs:
           gh issue close ${{ github.event.issue.html_url }} -c "closed by automation"
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_ACCESS }}
+  
+  verify_erros:
+    needs: [comment_repository_link, close_issue]
+    if: ${{ always() && contains(needs.*.result, 'failure') }}
+    runs-on: ubuntu-latest
+    permissions: write-all
+    environment: token_auth
+    steps:
+      - name: Delete Repository IF Errors
+        run: |
+          gh auth refresh -s delete_repo
+          gh repo delete "${{ needs.create_repository.outputs.repository_link }}" --yes
+          gh issue close ${{ github.event.issue.html_url }} -c "Algo deu errado na criação. Verifique nas Actions!"
+
           
