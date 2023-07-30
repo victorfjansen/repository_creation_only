@@ -11,7 +11,7 @@ jobs:
       - name: Create repository and get link
         id: repository_data
         run: |
-          gh repo create "${{ github.event.issue.title }}" --public \
+          gh repo create "${{ github.event.issue.title }}" --public 
           echo "REPOSITORY_LINK=$("https://github.com/victorfjansen/${{github.event.issue.title}}")" >> $GITHUB_ENV
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_ACCESS }}
