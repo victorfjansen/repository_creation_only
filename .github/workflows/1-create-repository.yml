@@ -10,6 +10,6 @@ jobs:
     steps:
       - name: Create repository
         run: |
-          gh repo create ${{ github.event.issue.title }} --public
+          gh repo create "${{ github.event.issue.title }}" --public
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_ACCESS }}
