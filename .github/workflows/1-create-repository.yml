@@ -28,7 +28,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TOKEN_ACCESS }}
 
   close_issue:
-    needs: create_repository
+    needs: comment_repository_link
     runs-on: ubuntu-latest
     permissions: write-all
     environment: token_auth
