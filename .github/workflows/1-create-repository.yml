@@ -7,12 +7,15 @@ jobs:
     runs-on: ubuntu-latest
     permissions: write-all
     environment: token_auth
+    outputs:
+      repository_link: ${{ steps.repository_data.outputs.repository_link }}
     steps:
       - name: Create repository and get link
-        id: repository_data
+        id: "repository_data"
         run: |
           gh repo create "${{ github.event.issue.title }}" --public 
-          echo "REPOSITORY_LINK=$("https://github.com/victorfjansen/${{github.event.issue.title}}")" >> $GITHUB_ENV
+          repository_link="https://github.com/victorfjansen/${{github.event.issue.title}}"
+          echo "repository_link=$repository_link" >> $GITHUB_OUTPUT
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_ACCESS }}
 
@@ -24,7 +27,7 @@ jobs:
     steps:
       - name: Comment on Issue
         run: |
-          gh issue comment ${{ github.event.issue.html_url }} -b "${{ env.REPOSITORY_LINK }}"
+          gh issue comment ${{ github.event.issue.html_url }} -b "${{ needs.create_repository.outputs.repository_link }}"
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_ACCESS }}
   
