@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Create repository and get link
         run: |
-          echo "REPOSITORY_LINK=(gh repo create "${{ github.event.issue.title }}" --public)" >> $GITHUB_OUTPUT
+          echo "REPOSITORY_LINK=$(gh repo create "${{ github.event.issue.title }}" --public) >> $GITHUB_OUTPUT"
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_ACCESS }}
         id: repository_data
@@ -26,9 +26,9 @@ jobs:
           gh issue comment ${{ github.event.issue.html_url }} -b ${{ steps.repository_data.outputs.REPOSITORY_LINK }}
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_ACCESS }}
-
+  
   close_issue:
-    needs: comment_repository_link
+    needs: create_repository
     runs-on: ubuntu-latest
     permissions: write-all
     environment: token_auth
