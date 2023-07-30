@@ -23,7 +23,7 @@ jobs:
     steps:
       - name: Comment on Issue
         run: |
-          gh issue comment ${{ github.event.issue.html_url }} -b ${{ steps.repository_data.outputs.REPOSITORY_LINK }}
+          gh issue comment ${{ github.event.issue.html_url }} -b "${{ steps.repository_data.outputs.REPOSITORY_LINK }}"
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_ACCESS }}
   
