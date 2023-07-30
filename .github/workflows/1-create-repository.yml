@@ -1,6 +1,3 @@
-env:
-  super_secret: ${{ secrets.TOKEN_ACCESS}}
-
 name: create repository
 on: 
   issues: 
@@ -11,15 +8,8 @@ jobs:
     permissions: write-all
     environment: token_auth
     steps:
-      - name: Extract issue template
-        uses: imjohnbo/extract-issue-template-fields@v1
-        with:
-          path: .github/ISSUE_TEMPLATE/[Repository]_angular-template.yml
-      - name: Logs Output from extract
+      - name: Create repository
+        run: |
+          gh create repo ${{ github.event.issue.title }} --public
         env:
-          ASSIGNEES: ${{ steps.extract.outputs.assignees }}
-          LABELS: ${{ steps.extract.outputs.labels }}
-          TITLE: ${{ steps.extract.outputs.title }}
-          BODY: ${{ steps.extract.outputs.body }}
-        run: |-
-          echo "${{ env.BODY }}"
+          GITHUB_TOKEN: ${{ secrets.TOKEN_ACCESS }}
