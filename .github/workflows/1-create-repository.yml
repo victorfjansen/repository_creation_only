@@ -11,8 +11,10 @@ jobs:
     permissions: write-all
     environment: token_auth
     steps:
-      - name: test
-        run: |
-          echo "Issuel Title: ${{ github.event.issue.title }}"
-          echo "Issuel Body: ${{ github.event.issue.body }}"
-          echo "Issue content: ${{ toJSON(github.event.issue) }}"
+      - name: Extract issue template
+        uses: imjohnbo/extract-issue-template-fields@v1
+        with:
+          path: .github/ISSUE_TEMPLATE/[Repository]_angular-template.yml
+      - name: Logs Output from extract
+        run: |-
+          echo $ASSIGNEES $LABELS $TITLE $BODY
