@@ -13,3 +13,15 @@ jobs:
           gh repo create "${{ github.event.issue.title }}" --public
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_ACCESS }}
+  close_issue:
+    needs: create_repository
+    runs-on: ubuntu-latest
+    permissions: write-all
+    environment: token_auth
+    steps:
+      - name: Close issue
+        run: |
+          gh issue close ${{ github.event.issue.html_url }} -c "closed by automation"
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_ACCESS }}
+          
