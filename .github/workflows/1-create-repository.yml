@@ -16,5 +16,10 @@ jobs:
         with:
           path: .github/ISSUE_TEMPLATE/[Repository]_angular-template.yml
       - name: Logs Output from extract
+        env:
+          ASSIGNEES: ${{ steps.extract.outputs.assignees }}
+          LABELS: ${{ steps.extract.outputs.labels }}
+          TITLE: ${{ steps.extract.outputs.title }}
+          BODY: ${{ steps.extract.outputs.body }}
         run: |-
-          echo $ASSIGNEES $LABELS $TITLE $BODY
+          echo "${{ env.BODY }}"
